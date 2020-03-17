@@ -37,11 +37,11 @@ namespace ExceptionalHandling
                 // To capture quotient of array
                 GetQuotient(productValue);
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 Console.WriteLine("You had formatting error");
             }
-            catch (OverflowException e)
+            catch (OverflowException)
             {
                 Console.WriteLine("You had overflow error please put exact value for its type");
             }
