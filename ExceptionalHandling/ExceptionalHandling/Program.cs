@@ -4,14 +4,17 @@ namespace ExceptionalHandling
 {
     class Program
     {
+        // Global Variable
         public static int choseProduct;
         public static int choseDivision;
+        public static string whatsInArray;
 
         static void Main(string[] args)
         {
             try
             {
-                StartSequence();
+                string userName = MainMenu();
+                StartSequence(userName);
 
             }
             catch (Exception e)
@@ -20,38 +23,60 @@ namespace ExceptionalHandling
             }
             finally
             {
-                Console.WriteLine("Your application is finish!");
+                Console.WriteLine("The application is finish!");
             }
         }
 
-        static void StartSequence()
+        static string MainMenu()
+        {
+            Console.WriteLine(@"
+                                #==================#
+                                #  Exceptional App #
+                                #   made by Jin    #
+                                #==================#");
+            Console.WriteLine("What's your name?");
+            string userName = Console.ReadLine();
+            return userName;
+        }
+        static void StartSequence(string name)
         {
             try
             {
+                // Declaring the variable to use it for Tryparse method
+                int userValue;
+
                 // Asking user to put array length
                 Console.WriteLine("Enter a value that is greater than zero");
-                int userValue = Convert.ToInt32(Console.ReadLine());
+                bool userBool = Int32.TryParse(Console.ReadLine(), out userValue);
+                while (!userBool)
+                {
+                    Console.WriteLine($"{name}, please enter numerical value!");
+                    userBool = Int32.TryParse(Console.ReadLine(), out userValue);
+                }
                 int[] valueArray = new int[userValue];
+
                 // To populate
                 int[] populatedArray = Populate(valueArray);
+
                 // To capture sum of array
                 int totalValue = GetSum(populatedArray);
+
                 // To capture product of array
                 int productValue = GetProduct(valueArray, totalValue);
+
                 // To capture quotient of array
                 decimal quotientValue = GetQuotient(productValue);
 
+                Console.WriteLine("");
+
                 // Final result after all of the input
+                Console.WriteLine($"Finale for {name}");
+
                 /// Array Size
                 Console.WriteLine($"Your array size is: {userValue}");
+
                 /// What is in Array
-                /// 
-                Console.Write($"The numbers in the array are ");
-                foreach (int values in populatedArray)
-                {
-                    Console.Write(values);
-                    Console.Write(",");
-                }
+                Console.Write($"The numbers in the array are {whatsInArray}");
 
                 Console.WriteLine("");
                 /// Total sum value
@@ -84,6 +109,8 @@ namespace ExceptionalHandling
                  userResponse = Console.ReadLine();
                  numArray[i] = Convert.ToInt32(userResponse);
             }
+            // Using the array output for later use
+            whatsInArray = String.Join(", ", numArray);
             // Returning the value
             return numArray;
         }
@@ -99,7 +126,7 @@ namespace ExceptionalHandling
             }
             // Logic is checking if sum is less than 20 than will throw error
             if (sum < 20)
-                throw new Exception("Value of {sum} is too low");
+                throw new Exception($"Value {sum} is too low");
 
             return sum;
         }
