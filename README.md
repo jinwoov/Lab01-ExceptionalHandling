@@ -30,7 +30,7 @@ Correct inputs scren
 ![Error Message Screen](./errorMessage.png)
 Error message screen
 
-![Final Console](./final.png)
+![Final Console](./finals.png)
 Final message screen
 
 

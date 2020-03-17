@@ -23,7 +23,7 @@ namespace ExceptionalHandling
             }
             finally
             {
-                Console.WriteLine("The application is finish!");
+                Console.WriteLine("The application is finished!");
             }
         }
 
@@ -66,8 +66,6 @@ namespace ExceptionalHandling
 
                 // To capture quotient of array
                 decimal quotientValue = GetQuotient(productValue);
-
-                Console.WriteLine("");
 
                 // Final result after all of the input
                 Console.WriteLine($"Finale for {name}");
@@ -139,8 +137,8 @@ namespace ExceptionalHandling
                 Console.WriteLine($"Please pick a number between 1 and {numArray.Length}");
                 int chosenNumber = Convert.ToInt32(Console.ReadLine());
                 // Multiplying array index of chosen number from user with total of populated array elements
-                int product = total * numArray[chosenNumber];
-                choseProduct = numArray[chosenNumber];
+                int product = total * numArray[chosenNumber-1];
+                choseProduct = numArray[chosenNumber-1];
                 return product;
             }
             catch (IndexOutOfRangeException)
