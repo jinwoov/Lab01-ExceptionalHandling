@@ -8,7 +8,7 @@ namespace ExceptionalHandling
         {
             try
             {
-                StartSeuence();
+                StartSequence();
 
             }
             catch (Exception e)
@@ -35,7 +35,7 @@ namespace ExceptionalHandling
                 // To capture product of array
                 int productValue = GetProduct(valueArray, totalValue);
                 // To capture quotient of array
-                GetQuotient(userArrvalueArrayay);
+                GetQuotient(productValue);
             }
             catch (FormatException e)
             {
@@ -97,5 +97,23 @@ namespace ExceptionalHandling
             }
         }
 
+        static decimal GetQuotient(int product)
+        {
+            try
+            {
+                // Asking the user to enter a input that will be used to divide the product result
+                Console.WriteLine($"Please enter a number to divide {product} by ...");
+                int dividableNumber = Convert.ToInt32(Console.ReadLine());
+                // using Decimal Divide to divde two number 
+                Decimal finalValue = Decimal.Divide(product, dividableNumber);
+                return finalValue;
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine($"Hellow you can't enter 0 -_-^");
+                return 0;
+            }
+            
+        }
     }
 }
