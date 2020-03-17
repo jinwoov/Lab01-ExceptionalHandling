@@ -4,6 +4,9 @@ namespace ExceptionalHandling
 {
     class Program
     {
+        public static int choseProduct;
+        public static int choseDivision;
+
         static void Main(string[] args)
         {
             try
@@ -25,7 +28,8 @@ namespace ExceptionalHandling
         {
             try
             {
-                Console.WriteLine("Enter a value that is greater than zero(0)");
+                // Asking user to put array length
+                Console.WriteLine("Enter a value that is greater than zero");
                 int userValue = Convert.ToInt32(Console.ReadLine());
                 int[] valueArray = new int[userValue];
                 // To populate
@@ -35,7 +39,29 @@ namespace ExceptionalHandling
                 // To capture product of array
                 int productValue = GetProduct(valueArray, totalValue);
                 // To capture quotient of array
-                GetQuotient(productValue);
+                decimal quotientValue = GetQuotient(productValue);
+
+                // Final result after all of the input
+                /// Array Size
+                Console.WriteLine($"Your array size is: {userValue}");
+                /// What is in Array
+                /// 
+                Console.Write($"The numbers in the array are ");
+                foreach (int values in populatedArray)
+                {
+                    Console.Write(values);
+                    Console.Write(",");
+                }
+
+                Console.WriteLine("");
+                /// Total sum value
+                Console.WriteLine($"The sum of the array is {totalValue}");
+
+                /// What is product
+                Console.WriteLine($"{totalValue} * {choseProduct} = {productValue}");
+                
+                /// division
+                Console.WriteLine($"{productValue} / {choseDivision} = {quotientValue}");
             }
             catch (FormatException)
             {
@@ -54,7 +80,7 @@ namespace ExceptionalHandling
             // Running the for loop to save each response depending on the length of an array
             for (int i = 0; i < numArray.Length; i++)
             {
-                 Console.WriteLine("Please enter numerical value!");
+                 Console.WriteLine($"Please enter numerical value! {i+1}/{numArray.Length}");
                  userResponse = Console.ReadLine();
                  numArray[i] = Convert.ToInt32(userResponse);
             }
@@ -87,12 +113,12 @@ namespace ExceptionalHandling
                 int chosenNumber = Convert.ToInt32(Console.ReadLine());
                 // Multiplying array index of chosen number from user with total of populated array elements
                 int product = total * numArray[chosenNumber];
-
+                choseProduct = numArray[chosenNumber];
                 return product;
             }
             catch (IndexOutOfRangeException)
             {
-                Console.WriteLine($"Sorry you index was out of range");
+                Console.WriteLine($"Sorry your index was out of range");
                 throw;
             }
         }
@@ -104,6 +130,7 @@ namespace ExceptionalHandling
                 // Asking the user to enter a input that will be used to divide the product result
                 Console.WriteLine($"Please enter a number to divide {product} by ...");
                 int dividableNumber = Convert.ToInt32(Console.ReadLine());
+                choseDivision = dividableNumber;
                 // using Decimal Divide to divde two number 
                 Decimal finalValue = Decimal.Divide(product, dividableNumber);
                 return finalValue;
