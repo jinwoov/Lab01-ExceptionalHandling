@@ -4,10 +4,6 @@ namespace ExceptionalHandling
 {
     class Program
     {
-        // Global Variable
-        public static int choseProduct;
-        public static int choseDivision;
-        public static string whatsInArray;
 
         static void Main(string[] args)
         {
@@ -74,17 +70,17 @@ namespace ExceptionalHandling
                 Console.WriteLine($"Your array size is: {userValue}");
 
                 /// What is in Array
-                Console.Write($"The numbers in the array are {whatsInArray}");
+                Console.Write($"The numbers in the array are {String.Join(", ", populatedArray)}");
 
                 Console.WriteLine("");
                 /// Total sum value
                 Console.WriteLine($"The sum of the array is {totalValue}");
 
                 /// What is product
-                Console.WriteLine($"{totalValue} * {choseProduct} = {productValue}");
+                Console.WriteLine($"{totalValue} * {productValue/totalValue} = {productValue}");
                 
                 /// division
-                Console.WriteLine($"{productValue} / {choseDivision} = {quotientValue}");
+                Console.WriteLine($"{productValue} / {productValue/quotientValue} = {quotientValue}");
             }
             catch (FormatException)
             {
@@ -107,8 +103,6 @@ namespace ExceptionalHandling
                  userResponse = Console.ReadLine();
                  numArray[i] = Convert.ToInt32(userResponse);
             }
-            // Using the array output for later use
-            whatsInArray = String.Join(", ", numArray);
             // Returning the value
             return numArray;
         }
@@ -138,7 +132,6 @@ namespace ExceptionalHandling
                 int chosenNumber = Convert.ToInt32(Console.ReadLine());
                 // Multiplying array index of chosen number from user with total of populated array elements
                 int product = total * numArray[chosenNumber-1];
-                choseProduct = numArray[chosenNumber-1];
                 return product;
             }
             catch (IndexOutOfRangeException)
@@ -155,7 +148,6 @@ namespace ExceptionalHandling
                 // Asking the user to enter a input that will be used to divide the product result
                 Console.WriteLine($"Please enter a number to divide {product} by ...");
                 int dividableNumber = Convert.ToInt32(Console.ReadLine());
-                choseDivision = dividableNumber;
                 // using Decimal Divide to divde two number 
                 Decimal finalValue = Decimal.Divide(product, dividableNumber);
                 return finalValue;
