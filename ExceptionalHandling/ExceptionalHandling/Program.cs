@@ -64,16 +64,20 @@ namespace ExceptionalHandling
 
         static int GetSum(int[] numArray)
         {
+            // Creating new variable to store sum of number from Populated array
             int sum = 0;
+            // ForEach loop is adding all the values to the sum
             foreach (int values in numArray)
             {
                 sum += values;
             }
-
+            // Logic is checking if sum is less than 20 than will throw error
             if (sum < 20)
                 throw new Exception("Value of {sum} is too low");
 
             return sum;
         }
+
+
     }
 }
