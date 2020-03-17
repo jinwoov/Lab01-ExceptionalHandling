@@ -33,7 +33,7 @@ namespace ExceptionalHandling
                 // To capture sum of array
                 int totalValue = GetSum(populatedArray);
                 // To capture product of array
-                GetProduct(valueArray);
+                int productValue = GetProduct(valueArray, totalValue);
                 // To capture quotient of array
                 GetQuotient(userArrvalueArrayay);
             }
@@ -78,6 +78,24 @@ namespace ExceptionalHandling
             return sum;
         }
 
+        static int GetProduct(int[] numArray, int total)
+        {
+            try
+            {
+                // First let the user pick a number and converting it's type to integer
+                Console.WriteLine($"Please pick a number between 1 and {numArray.Length}");
+                int chosenNumber = Convert.ToInt32(Console.ReadLine());
+                // Multiplying array index of chosen number from user with total of populated array elements
+                int product = total * numArray[chosenNumber];
+
+                return product;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine($"Sorry you index was out of range");
+                throw;
+            }
+        }
 
     }
 }
