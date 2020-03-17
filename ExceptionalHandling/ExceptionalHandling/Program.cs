@@ -29,13 +29,13 @@ namespace ExceptionalHandling
                 int userValue = Convert.ToInt32(Console.ReadLine());
                 int[] valueArray = new int[userValue];
                 // To populate
-                Populate(userArray);
+                int[] populatedArray = Populate(valueArray);
                 // To capture sum of array
-                GetSum(userArray);
+                GetSum(valueArray);
                 // To capture product of array
-                GetProduct(userArray);
+                GetProduct(valueArray);
                 // To capture quotient of array
-                GetQuotient(userArray);
+                GetQuotient(userArrvalueArrayay);
             }
             catch (FormatException e)
             {
@@ -45,8 +45,20 @@ namespace ExceptionalHandling
             {
                 Console.WriteLine("You had overflow error please put exact value for its type");
             }
-           
         }
 
+        static int[] Populate(int[] numArray)
+        {
+            string userResponse;
+            for (int i = 0; i < numArray.Length; i++)
+            {
+                 Console.WriteLine("Please enter numerical value!");
+                 userResponse = Console.ReadLine();
+                 numArray[i] = Convert.ToInt32(userResponse);
+            }
+
+            return numArray;
+
+        }
     }
 }
